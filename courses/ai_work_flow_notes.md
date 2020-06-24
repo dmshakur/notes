@@ -3,8 +3,6 @@
 
 ## Data analysis and hypothesis testing
 
-### Week 2
-
 #### P-values
 A p-value is a measure to quantify the evidence *against* the null hypothesis.
 It is the probability of finding a certain result if the null hypothesis is *true*.
@@ -60,7 +58,7 @@ for p, pval in enumerate(pvals):
     print(round(pval, 3), round(adjusted_bonferroni[p], 3), round(adjusted_bh[p], 3))
 ```
 
-#### Posterier probability
+#### Posterior probability
 Posterior probability is the likelihood that something will occur given relevant evidence.
 
 It can be defined as:
@@ -73,3 +71,64 @@ Bayes factors is a bayesian alternative to classical hypothesis testing. Bayesia
 
 It is a likelihood ratio of the marginal likelihood of two competing hypotheses, usually null or alternative.
 
+## Machine learning, visual recognition and NLP
+
+### Generalizing well to unseen data.
+Train-test splits, cross validation and grid searching are techniques used to ensure that models are tuned in a way that they generalize well to unseen data. 
+
+**Stratified KFold**, a variation of kfold which returns stratified kfolds, where each set contains approximately the same percentage of samples of each target class as the complete set.
+
+**GridSearchCV** uses stratified kfold under the hood. It is very time consuming. ElasticNetCV is a possibly more effective version than the 'exhaustive version'.
+
+### Model evaluation plots
+How well a model performed can be decomposed as bias, variance and noise. 
+* Bias:
+  * It comes from the underlying model assumptions
+  * It is the average error when the model is subjected to different training sets.
+  * Associated with under-fitting, or trying to fit an inflexible model to flexible data.
+* Variance:
+  * A reflection of how sensitive the model is to variations in the training data.
+  * Associated with over-fitting.
+Possible solutions:
+* Bias:
+  * Add more features, with additional data or feature engineering
+  * A more sophisticated model
+  * Decrease regularization
+* Variance:
+  * Fewer features: techniques such as variance thresholding, ANOVA, manifold learning and matrix decomposition.
+  * A simpler model.
+  * More training samples.
+  * Increase regularization.
+
+### Relating the evaluation metric to a business metric
+A business metric is a quantifiable event that is directly used to measure the success or failure of a business opportunity.
+
+### Regularized regression
+**Regularization** is a technique to control over-fitting by introducing a penalty term.
+
+## Machine learning, visual recognition and nlp
+
+### Bagging and random forest
+Bootstrapping can be a useful way to help make estimate. In Sci-kit learn you create a BaggingClassifier, as a wrapper for a model, like an SVM. In a very similar manner to grid searching.
+
+### Boosting, ensemble model
+Boosting is essentially taking several weak learners (models only slightly better than random chance) and creates a single strong learner. Boosting builds its ensemble sequentially, unlike random forest which do so in parallel.
+
+### Ensemble learning
+Ensemble learning through model averaging, Bayesian model averaging, model stacking, majority vote and other methods are among the best performing methods known in machine learning.
+
+### Neural networks: Through the eyes of our working examples
+When choosing a model for deployment a neural network is often a great and powerful choice, but it comes with the cost of complexity and often, computation time and needs. If you were to have two models that perform similarly then you should default to the simpler model. In the long term the maintenance required for a neural network is much greater than that of a simpler model.
+
+Neural networks can be seen as non-linear function approximators.
+
+## Enterprise model deployment
+Make it work, make it better, make it faster.
+
+## The design process
+When going through the design process remember to, observe, reflect and make. This means making fast changes to the model in response to user feedback.
+
+### Docker
+A docker container is a running process that is kept isolated from the host and from other containers. One of the important consequences of this isolation is that each container interacts with its own private filesystem. A docker image includes everything needed to run an application: code, runtime libraries, and a private filesystem.
+
+Before moving to a high performance computing environment, try optimizing your model with tools like apache spark.
